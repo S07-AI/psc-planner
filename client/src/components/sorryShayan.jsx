@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './pdfUploader.css'; // Assuming you have some CSS for styling
 
 const PdfUploader = () => {
   const [file, setFile] = useState(null);
@@ -21,9 +22,9 @@ const PdfUploader = () => {
   };
 
   return (
-    <div>
+    <div className='pdf-uploader'>
       <input type="file" accept="application/pdf" onChange={(e) => setFile(e.target.files[0])} />
-      <button onClick={handleUpload}>Upload</button>
+      <button className="upload-button" onClick={handleUpload}>Upload</button>
       {csvUrl && <a href={csvUrl} download>Download CSV</a>}
     </div>
   );
