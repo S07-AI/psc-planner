@@ -1,18 +1,17 @@
 /* Header Styling */
 .header {
-    background: linear-gradient(
-                  to right,
-                  rgba(255, 0, 0, 0.4),   /* red overlay */
-                  rgba(0, 0, 0, 0.5),     /* black overlay */
-                  rgba(255, 215, 0, 0.4)  /* gold overlay */
-               ),
-               url('../../public/gryphoncp.png');
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.3),
+        rgba(255, 215, 0, 0.4)
+      ),
+      url('/gryphoncp.png'); /* ✅ Correct way to include image */
     background-size: cover;
     background-position: center top 28%;
     background-repeat: no-repeat;
     padding: 60px 0;
     text-align: center;
     color: white;
+    
 }
 
 
