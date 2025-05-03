@@ -14,7 +14,7 @@ const PdfUploader = () => {
 
     try {
       const { data } = await axios.post('http://localhost:8855/upload', formData);
-      setCsvUrl(data.csvUrl);
+      setCsvUrl(`http://localhost:8855${data.csvUrl}`);
       alert('Upload successful!');
     } catch (err) {
       alert('Upload failed.');

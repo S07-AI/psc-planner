@@ -7,12 +7,21 @@ import fs from 'fs';
 import cors from 'cors';
 import { tempPdfString } from "./testpdf.js";
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const PORT = 8855;
 
 const app = express();
 app.use(express.static("public"));
 app.use(cors());
+
+// Create public directory if it doesn't exist
+if (!fs.existsSync('./public')) {
+    fs.mkdirSync('./public');
+}
+if (!fs.existsSync('./public/downloads')) {
+    fs.mkdirSync('./public/downloads');
+}
 
 // 💾 Use in-memory storage
 const storage = multer.memoryStorage();
@@ -41,11 +50,16 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
         const textContent = pdfData.text;
 
         const csvOutline = await sendGeminiRequest(formatGeminiRequest(textContent));
+        
+        // Generate unique filename and save CSV
+        const fileName = `${uuidv4()}.csv`;
+        const filePath = path.join('public/downloads', fileName);
+        fs.writeFileSync(filePath, csvOutline);
 
         res.status(200).json({
             message: 'PDF Uploaded Successfully',
             text: textContent,
-            csv: csvOutline,
+            csvUrl: `/downloads/${fileName}`
         });
 
     } catch (error) {
