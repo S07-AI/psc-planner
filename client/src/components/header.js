@@ -9,7 +9,7 @@ const Header = () => {
         <img src={gryphonLogo} alt="Gryphon Logo" className="header-logo" />
         <div className="header-text">
           <h1 className="header-title">Course to Calendar Converter</h1>
-          <p className="header-subtitle">Syllabi to Schedule</p>
+          <p className="header-subtitle">because who reads course outlines...</p>
         </div>
       </div>
     </header>
