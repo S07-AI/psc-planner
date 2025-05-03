@@ -37,3 +37,4 @@ coverage/
 __snapshots__/
 
 # NOTE: node_modules/ is intentionally *not* ignored
+node_modules/
