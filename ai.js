@@ -5,7 +5,7 @@ export async function askOllama(prompt) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            model: "llama3", // or any model you have pulled
+            model: "gemma:1b", // or any model you have pulled
             prompt: prompt,
             stream: false,
         }),
@@ -13,9 +13,10 @@ export async function askOllama(prompt) {
 
     if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`HTTP error ${response.status}: ${errorText}`);
     }
 
     const data = await response.json();
     return data.response;
 }
+
+askOllama("Hi");
