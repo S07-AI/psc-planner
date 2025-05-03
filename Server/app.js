@@ -6,10 +6,10 @@ import path from 'path'
 import fs from 'fs'
 import cors from 'cors'
 import { tempPdfString } from "./testpdf.js";
+import pdfParse from 'pdf-parse';
 
 
-const PORT = 3000;
-const OLLAMA_URL = "http://localhost:11434/api/generate";
+const PORT = 8855;
 
 let app = express();
 app.use(express.static("public"));
@@ -40,12 +40,30 @@ app.get("/", async (req, res) => {
     res.send(test);
 });
 
-app.post('/upload', upload.single('pdf'), (req,res) => {
+app.post('/upload', upload.single('pdf'), async (req,res) => {
     if (!req.file) {
         return res.status(400).send('No File Uploaded');
     }
 
-    res.status(200).json({message : 'PDF Uploaded Successfully', file : req.file.filename})
+    try {
+
+        const dataBuffer = req.file.buffer;
+        const pdfData = await pdfParse(dataBuffer);
+        const textContent = pdfData.text;
+
+        let csvOutline = await sendGeminiRequest(formatGeminiRequest(textContent));
+
+        res.status(200).json({
+            message : 'PDF Uploaded Suggessfully',
+            text : textContent,
+            csv : csvOutline,
+        })
+
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Failed to Process PDF");
+    }
 
 })
 
