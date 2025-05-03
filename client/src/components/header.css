@@ -6,19 +6,14 @@
                   rgba(0, 0, 0, 0.5),
                   rgba(255, 215, 0, 0.4)
                ),
-               url('/gryphoncp.png');
+               url('./gryphoncp.png');
     background-size: cover;
     background-position: center top 28%;
     background-repeat: no-repeat;
     padding: 60px 0;
     text-align: center;
     color: white;
-    
 }
-  
-
-
-
 .header-title {
     font-size: 2.5rem;
     color: #ffffff;
