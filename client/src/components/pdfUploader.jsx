@@ -13,7 +13,7 @@ const PdfUploader = () => {
     formData.append('pdf', file);
 
     try {
-      const { data } = await axios.post('http://localhost:3000/upload', formData);
+      const { data } = await axios.post('http://localhost:8855/upload', formData);
       setCsvUrl(data.csvUrl);
       alert('Upload successful!');
     } catch (err) {
