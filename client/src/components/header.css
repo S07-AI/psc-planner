@@ -6,7 +6,7 @@
                   rgba(0, 0, 0, 0.5),     /* black overlay */
                   rgba(255, 215, 0, 0.4)  /* gold overlay */
                ),
-               url('/gryphoncp.png');
+               url('../../public/gryphoncp.png');
     background-size: cover;
     background-position: center top 28%;
     background-repeat: no-repeat;
