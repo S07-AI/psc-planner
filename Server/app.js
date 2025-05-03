@@ -1,10 +1,11 @@
 import express from "express";
 import axios from "axios";
-import { sendOllamaRequest } from "./ai.js";
+import { sendGeminiRequest, formatGeminiRequest } from "./ai.js";
 import multer from 'multer';
 import path from 'path'
 import fs from 'fs'
 import cors from 'cors'
+import { tempPdfString } from "./testpdf.js";
 
 
 const PORT = 3000;
@@ -35,15 +36,7 @@ const upload = multer({
 
 
 app.get("/", async (req, res) => {
-    let test = await sendOllamaRequest(
-        OLLAMA_URL,
-        {
-            model: "gemma3:1b",
-            prompt: "hello",
-            stream: false,
-        },
-        { "Content-Type": "application/json" },
-    );
+    let test = await sendGeminiRequest(formatGeminiRequest(tempPdfString));
     res.send(test);
 });
 
