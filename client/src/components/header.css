@@ -1,27 +1,52 @@
 /* Header Styling */
 .header {
-    background: linear-gradient(to right, rgba(255, 0, 0, 0.5), rgba(0, 0, 0, 0.5), rgba(255, 215, 0, 0.5)),
-                url('/path/to/your/image.jpg');
+    background: linear-gradient(
+                  to right,
+                  rgba(255, 0, 0, 0.4),   /* red overlay */
+                  rgba(0, 0, 0, 0.5),     /* black overlay */
+                  rgba(255, 215, 0, 0.4)  /* gold overlay */
+               ),
+               url('/gryphoncp.png');
     background-size: cover;
-    background-position: center;
-    padding: 20px 0;
+    background-position: center top 28%;
+    background-repeat: no-repeat;
+    padding: 60px 0;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: white;
 }
 
 
 
 .header-title {
     font-size: 2.5rem;
-    color: #ffffff; /* Red */
+    color: #ffffff;
     margin-bottom: 0.3em;
+    text-shadow:
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+        -2px  0px 0 #000,
+         2px  0px 0 #000,
+         0px  2px 0 #000,
+         0px -2px 0 #000;
 }
 
 .header-subtitle {
     font-size: 1.2rem;
-    color: #ffffff; /* Gold */
+    color: #ffffff;
     margin-bottom: 1em;
+    text-shadow:
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000,
+        -2px  0px 0 #000,
+         2px  0px 0 #000,
+         0px  2px 0 #000,
+         0px -2px 0 #000;
 }
+
 
 .header-nav {
     margin-top: 10px;
