@@ -1,84 +1,58 @@
-/* Full-page background gradient */
 body {
     margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(
-                  to right,
-                  rgba(255, 0, 0, 0.4),
-                  rgba(0, 0, 0, 0.5),
-                  rgba(255, 215, 0, 0.4)
-               );
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Header Container */
-.header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fffaf0;
+    color: #000;
+  }
+  
+  /* Header wrapper */
+  .header {
+    background-color: #000;
+    border-bottom: 4px solid #b30000;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Flex row: logo + text */
+  .header-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px 0 20px 0;
-    text-align: center;
-    color: white;
     gap: 20px;
-}
-
-/* Logo */
-.header-logo {
+  }
+  
+  /* Logo styling */
+  .header-logo {
     width: 250px;
     height: auto;
-}
-
-/* Title & Subtitle */
-.header-text {
+    transition: transform 0.3s ease;
+  }
+  
+  .header-logo:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Text beside logo */
+  .header-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-}
-
-.header-title {
-    font-size: 2.5rem;
-    margin-bottom: 0.3em;
-    text-shadow:
-        -2px -2px 0 #000,
-         2px -2px 0 #000,
-        -2px  2px 0 #000,
-         2px  2px 0 #000;
-}
-
-.header-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 1em;
-    text-align: center;
-    text-shadow:
-        -2px -2px 0 #000,
-         2px -2px 0 #000,
-        -2px  2px 0 #000,
-         2px  2px 0 #000;
-}
-
-/* Nav Links */
-.header-nav {
-    margin-top: 10px;
-}
-
-.header-nav-list {
-    list-style: none;
-    display: flex;
     justify-content: center;
-    gap: 30px;
-    padding: 0;
-}
-
-.header-nav-item {
+  }
+  
+  .header-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffd700;
+    text-shadow: 1px 1px #b30000;
+  }
+  
+  .header-subtitle {
     font-size: 1rem;
-    color: #ffffff;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.header-nav-item:hover {
-    color: #ff0000;
-}
+    margin-top: 4px;
+    color: #f8d000;
+    font-weight: 500;
+    text-shadow: 0.5px 0.5px #b30000;
+  }
+  

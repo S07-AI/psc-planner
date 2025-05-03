@@ -1,16 +1,18 @@
 import React from 'react';
+import gryphonLogo from './gryphoncp.png'; // Ensure this path is correct
 import './header.css';
-import gryphonLogo from './gryphoncp.png'; // make sure it's inside the same folder
 
 const Header = () => {
   return (
-    <div className="header">
-      <img src={gryphonLogo} alt="Gryphon Logo" className="header-logo" />
-      <div className="header-text">
-        <h1 className="header-title">Course Calendar Converter</h1>
-        <p className="header-subtitle">Syllabi to Schedule</p>
+    <header className="header">
+      <div className="header-content">
+        <img src={gryphonLogo} alt="Gryphon Logo" className="header-logo" />
+        <div className="header-text">
+          <h1 className="header-title">Course Calendar Converter</h1>
+          <p className="header-subtitle">Syllabi to Schedule</p>
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 
