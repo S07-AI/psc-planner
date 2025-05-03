@@ -6,11 +6,7 @@
                   rgba(0, 0, 0, 0.5),
                   rgba(255, 215, 0, 0.4)
                ),
-<<<<<<< HEAD
-               url('/gryphoncp.png');
-=======
-               url('../../public/gryphoncp.png'); /* This is a public path */
->>>>>>> 2ba2dfc62bf48f7abfa2eabbd7e7375653d4a9fd
+               url('./gryphoncp.png');
     background-size: cover;
     background-position: center top 28%;
     background-repeat: no-repeat;
@@ -19,7 +15,7 @@
     color: white;
     
 }
-  }
+  
   
 
 
