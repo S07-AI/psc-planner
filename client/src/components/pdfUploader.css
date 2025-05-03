@@ -1,0 +1,29 @@
+/* Basic styling for a button */
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.upload-button:active {
+    background-color: #003f7f;
+    transform: scale(0.95);
+}
+
+.upload-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
