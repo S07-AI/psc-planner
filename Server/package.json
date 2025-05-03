@@ -1,0 +1,20 @@
+{
+  "name": "psc-planner",
+  "version": "1.0.0",
+  "description": "course planner",
+  "license": "ISC",
+  "author": "Pedro Boudoux, Shayan Safaei, Caiden Kowalchuk",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "path": "^0.12.7"
+  }
+}
