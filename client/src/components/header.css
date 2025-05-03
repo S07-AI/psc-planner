@@ -1,10 +1,12 @@
 /* Header Styling */
 .header {
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.3),
-        rgba(255, 215, 0, 0.4)
-      ),
-      url('/gryphoncp.png'); /* ✅ Correct way to include image */
+    background: linear-gradient(
+                  to right,
+                  rgba(255, 0, 0, 0.4),
+                  rgba(0, 0, 0, 0.5),
+                  rgba(255, 215, 0, 0.4)
+               ),
+               url('../../public/gryphoncp.png'); /* This is a public path */
     background-size: cover;
     background-position: center top 28%;
     background-repeat: no-repeat;
@@ -13,6 +15,8 @@
     color: white;
     
 }
+  }
+  
 
 
 
