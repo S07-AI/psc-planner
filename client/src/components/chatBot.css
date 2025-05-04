@@ -5,7 +5,7 @@
     width: 340px;
     height: 480px;
     background-color: #1a1a1a;
-    border-radius: 16px 0 0 0;
+    border-radius: 16px 16px 0 0;
     border-left: 2px solid rgba(255, 215, 0, 0.3);
     border-top: 2px solid rgba(255, 215, 0, 0.3);
     box-shadow: -4px 0 16px rgba(0, 0, 0, 0.4);
@@ -113,4 +113,23 @@
     background-color: #990000;
     transform: scale(1.05);
   }
+
+  .chatbot-minimize {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+  }
+  
+  .chatbot-minimize:hover {
+    color: #ffd700;
+  }
+  
   
