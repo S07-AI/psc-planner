@@ -7,14 +7,36 @@ import Uploadthing from './components/uploadThing';
 import ChatBot from './components/chatBot';
 
 function App() {
+  const [pdfText, setPdfText] = React.useState(null);
+  const [showCalendarButtons, setShowCalendarButtons] = React.useState(false);
+
+  // Add this to debug
+  console.log("PDF Text:", pdfText);
+
+  const handlePdfProcessed = (text) => {
+    setPdfText(text);
+    setShowCalendarButtons(true);
+  };
+
   return (
-    <div>
+    <div className="App">
       <Header />
-      <PdfUploader />
+      <PdfUploader setPdfText={handlePdfProcessed} />
       <Uploadthing />
+      {pdfText && (
+        <div>
+          {/* Calendar buttons section */}
+          <div className="calendar-buttons">
+            {/* Your existing calendar buttons */}
+          </div>
+          
+          {/* ChatBot component */}
+          <ChatBot pdfContent={pdfText} />
+        </div>
+      )}
       <Footer />
-      <ChatBot /> 
     </div>
   );
 }
+
 export default App;
