@@ -1,5 +1,4 @@
 import express from "express";
-import axios from "axios";
 import { sendGeminiRequest, formatGeminiRequest } from "./ai.js";
 import multer from 'multer';
 import path from 'path';
@@ -9,7 +8,6 @@ import { tempPdfString } from "./testpdf.js";
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 import { v4 as uuidv4 } from 'uuid';
 import { oauth2Client, getAuthUrl, createCalendarEvent } from './google.js';
-import dotenv from 'dotenv';
 
 const PORT = 8855;
 
@@ -26,7 +24,6 @@ if (!fs.existsSync('./public/downloads')) {
     fs.mkdirSync('./public/downloads');
 }
 
-// 💾 Use in-memory storage
 const storage = multer.memoryStorage();
 
 const upload = multer({
