@@ -3,7 +3,7 @@ import './chatBot.css';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Hi there! Ask me anything about PSC Planner.' },
+    { from: 'bot', text: 'Hi there! Ask me anything about GryphPlanner.' },
   ]);
   const [input, setInput] = useState('');
   const [open, setOpen] = useState(false);
@@ -22,13 +22,21 @@ const ChatBot = () => {
   return (
     <>
       {/* Toggle Button */}
-      <button className="chatbot-toggle" onClick={() => setOpen((prev) => !prev)}>
-        💬
+      {!open && (
+      <button className="chatbot-toggle" onClick={() => setOpen(true)}>
+        <span role="img" aria-label="chat">💬</span>
       </button>
+    )}
+
+
 
       {/* Chatbot Panel */}
       <div className={`chatbot-panel ${open ? 'open' : ''}`}>
-        <div className="chatbot-header">PSC ChatBot</div>
+      <div className="chatbot-header">
+        GryphBot
+        <button className="chatbot-minimize" onClick={() => setOpen(false)}>−</button>
+      </div>
+
         <div className="chatbot-messages">
           {messages.map((msg, idx) => (
             <div key={idx} className={`chatbot-message ${msg.from}`}>

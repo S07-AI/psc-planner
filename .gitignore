@@ -1,3 +1,4 @@
 ./Server/node_modules/
 Server/credentials.json
+Server/public/
 Server/.env
