@@ -91,7 +91,6 @@
 .hidden-file-input {
     display: none;
   }
-<<<<<<< HEAD
 
 .auth-section {
   text-align: center;
@@ -123,34 +122,3 @@
 .calendar-button:hover {
   background-color: #357abd;
 }
-=======
-  
-  /* Custom drag-or-click box */
-  .custom-dropzone {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    margin: 0 auto 24px auto;
-    max-width: 380px;
-    height: 150px;
-    background-color: #fff;
-    color: #000;
-    border: 2px dashed #000;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-family: 'Russo One', sans-serif;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .custom-dropzone:hover {
-    background-color: #fffbe6;
-    border-color: #ffd700;
-    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.25);
-  }
-  
-  
->>>>>>> efec793fec84ffa6c48d6429469f575b1815b8c4
