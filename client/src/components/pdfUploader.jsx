@@ -9,6 +9,7 @@ const PdfUploader = () => {
   const [csvData, setCsvData] = useState(null);
   const [authTokens, setAuthTokens] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   // Parse auth tokens from URL (OAuth)
   useEffect(() => {
@@ -80,10 +81,10 @@ const PdfUploader = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-
-      alert(`Successfully created ${validEvents.length} calendar events!`);
+      setSuccessMessage(`Successfully created ${validEvents.length} calendar events!`);
     } catch (err) {
       console.error(err);
+      setSuccessMessage(null);
       alert('Error creating calendar events');
     }
   };
@@ -111,9 +112,10 @@ const PdfUploader = () => {
       const { data } = await axios.post('http://localhost:8855/upload', formData);
       const fullCsvUrl = `http://localhost:8855${data.csvUrl}`;
       setCsvUrl(fullCsvUrl);
-      alert('Upload successful!');
+      setSuccessMessage('Upload successful!');
       processCsv(fullCsvUrl);
     } catch {
+      setSuccessMessage(null);
       alert('Upload failed.');
     }
   };
@@ -132,7 +134,11 @@ const PdfUploader = () => {
   return (
     <div className="pdf-uploader">
       <h2 className="uploader-title">Course Outline Calendar Creator</h2>
-
+      {successMessage && (
+        <div className="success-message">
+          {successMessage}
+        </div>
+      )}
       {!authTokens ? (
         <div className="auth-section">
           <p>Please sign in to continue</p>

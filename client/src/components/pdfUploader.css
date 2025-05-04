@@ -160,3 +160,13 @@
     0 0 0 6px blue,
     0 0 0 8px yellow;
 }
+
+/* Success message */
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  text-align: center;
+}
