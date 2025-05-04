@@ -102,10 +102,21 @@
   margin-top: 20px;
 }
 
-.download-button,
-.calendar-button {
+.download-button {
   width: 100%;
   max-width: 300px;
+  text-align: center;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.calendar-button {
+  width: 100%;
+  max-width: 400px;
   text-align: center;
   padding: 12px;
   font-size: 1rem;
@@ -130,11 +141,22 @@
 
 /* Calendar Button */
 .calendar-button {
-  background-color: #ffd700;
-  color: black;
+  background-color: #ffffff;
+  color: #000;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .calendar-button:hover {
-  background-color: #e6c200;
   transform: scale(1.03);
+  box-shadow:
+    0 0 0 2px green,
+    0 0 0 4px red,
+    0 0 0 6px blue,
+    0 0 0 8px yellow;
 }

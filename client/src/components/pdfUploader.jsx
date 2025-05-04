@@ -8,7 +8,9 @@ const PdfUploader = () => {
   const [csvUrl, setCsvUrl] = useState(null);
   const [csvData, setCsvData] = useState(null);
   const [authTokens, setAuthTokens] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
 
+  // Parse auth tokens from URL (OAuth)
   useEffect(() => {
     const tokens = new URLSearchParams(window.location.search).get('tokens');
     if (tokens) {
@@ -21,7 +23,7 @@ const PdfUploader = () => {
     try {
       const { data } = await axios.get('http://localhost:8855/auth/google');
       window.location.href = data.url;
-    } catch (err) {
+    } catch {
       alert('Failed to initialize Google Sign-in');
     }
   };
@@ -29,38 +31,27 @@ const PdfUploader = () => {
   const createCalendarEvents = async () => {
     if (!csvData || !authTokens) return;
 
-    console.log('Processing CSV Data:', csvData);
-      
     const validEvents = csvData
       .filter(row => Object.keys(row).length > 0)
       .map(row => {
-        console.log('Processing row:', row);
-        
-        // Find title and course code more flexibly
-        const titleField = Object.keys(row).find(k => 
-          row[k] && typeof row[k] === 'string' && 
-          !row[k].toLowerCase().includes('true') && 
+        const titleField = Object.keys(row).find(k =>
+          row[k] &&
+          typeof row[k] === 'string' &&
+          !row[k].toLowerCase().includes('true') &&
           !row[k].toLowerCase().includes('false')
         );
-        
-        const dateField = Object.keys(row).find(k => 
-          k.toLowerCase().includes('date') || 
+
+        const dateField = Object.keys(row).find(k =>
+          k.toLowerCase().includes('date') ||
           k.toLowerCase().includes('deadline') ||
           k.toLowerCase().includes('due')
         );
 
-        if (!titleField || !dateField) {
-          console.log('Missing fields:', { titleField, dateField });
-          return null;
-        }
+        if (!titleField || !dateField) return null;
 
         const startDate = new Date(row[dateField]);
-        if (isNaN(startDate.getTime())) {
-          console.log('Invalid date:', row[dateField]);
-          return null;
-        }
+        if (isNaN(startDate.getTime())) return null;
 
-        // Create event object
         return {
           summary: row[titleField],
           description: Object.entries(row)
@@ -68,36 +59,32 @@ const PdfUploader = () => {
             .join('\n'),
           start: {
             dateTime: startDate.toISOString(),
-            timeZone: 'America/Toronto'
+            timeZone: 'America/Toronto',
           },
           end: {
             dateTime: new Date(startDate.getTime() + 60 * 60 * 1000).toISOString(),
-            timeZone: 'America/Toronto'
-          }
+            timeZone: 'America/Toronto',
+          },
         };
       })
       .filter(event => event !== null);
 
-    // ...rest of the function remains the same...
     try {
-      console.log('Sending events to calendar:', validEvents);
-
-      const response = await axios.post(
+      await axios.post(
         'http://localhost:8855/calendar/create',
-        { 
+        {
           events: validEvents,
-          auth: authTokens 
+          auth: authTokens,
         },
-        { 
-          headers: { 'Content-Type': 'application/json' }
+        {
+          headers: { 'Content-Type': 'application/json' },
         }
       );
 
-      console.log('Calendar API Response:', response.data);
       alert(`Successfully created ${validEvents.length} calendar events!`);
     } catch (err) {
-      console.error('Failed to create calendar events:', err);
-      alert(`Error: ${err.message}`);
+      console.error(err);
+      alert('Error creating calendar events');
     }
   };
 
@@ -105,42 +92,47 @@ const PdfUploader = () => {
     try {
       const response = await fetch(url);
       const text = await response.text();
-      console.log('Raw CSV text:', text);
-
-      // Don't transform headers to lowercase to preserve original names
-      const result = Papa.parse(text, { 
+      const result = Papa.parse(text, {
         header: true,
-        skipEmptyLines: true
+        skipEmptyLines: true,
       });
-
-      console.log('Parsed CSV:', result);
       setCsvData(result.data);
-    } catch (err) {
-      console.error('CSV processing error:', err);
+    } catch {
       alert('Failed to process CSV file');
     }
   };
 
   const handleUpload = async () => {
     if (!file) return alert('Select a PDF first.');
-
     const formData = new FormData();
     formData.append('pdf', file);
 
     try {
       const { data } = await axios.post('http://localhost:8855/upload', formData);
-      setCsvUrl(`http://localhost:8855${data.csvUrl}`);
+      const fullCsvUrl = `http://localhost:8855${data.csvUrl}`;
+      setCsvUrl(fullCsvUrl);
       alert('Upload successful!');
-      processCsv(`http://localhost:8855${data.csvUrl}`);
-    } catch (err) {
+      processCsv(fullCsvUrl);
+    } catch {
       alert('Upload failed.');
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile && droppedFile.type === 'application/pdf') {
+      setFile(droppedFile);
+    } else {
+      alert('Please drop a valid PDF file.');
     }
   };
 
   return (
     <div className="pdf-uploader">
       <h2 className="uploader-title">Course Outline Calendar Creator</h2>
-      
+
       {!authTokens ? (
         <div className="auth-section">
           <p>Please sign in to continue</p>
@@ -150,16 +142,26 @@ const PdfUploader = () => {
         </div>
       ) : (
         <div className="upload-section">
-          <label htmlFor="file-upload" className="custom-dropzone">
-  {file ? file.name : "Click or drag your course outline here"}
-</label>
-<input
-  id="file-upload"
-  type="file"
-  accept="application/pdf"
-  className="hidden-file-input"
-  onChange={(e) => setFile(e.target.files[0])}
-/>
+          <div
+            className={`custom-dropzone ${isDragging ? 'dragging' : ''}`}
+            onClick={() => document.getElementById('file-upload').click()}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setIsDragging(true);
+            }}
+            onDragLeave={() => setIsDragging(false)}
+            onDrop={handleDrop}
+          >
+            {file ? file.name : 'Click or drag your course outline here'}
+          </div>
+
+          <input
+            id="file-upload"
+            type="file"
+            accept="application/pdf"
+            className="hidden-file-input"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
 
           <button className="upload-button" onClick={handleUpload}>Upload</button>
 
