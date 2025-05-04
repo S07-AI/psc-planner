@@ -1,124 +1,140 @@
 .pdf-uploader {
-    background-color: #fffaf0;
-    padding: 40px;
-    margin: 40px auto;
-    max-width: 500px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    font-family: 'Russo One', sans-serif;
-  }
-  
-  .uploader-title {
-    font-size: 1.8rem;
-    color: #b30000;
-    margin-bottom: 24px;
-  }
-  
-  /* Fancy file input container */
-  .file-input {
-    padding: 12px 16px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    background-color: #fff;
-    font-size: 1rem;
-    font-family: inherit;
-    cursor: pointer;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 380px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-  }
-  
-  .file-input:hover {
-    border-color: #ffd700;
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-  }
-  
-  /* Upload button */
-  .upload-button {
-    display: block;
-    width: 100%;
-    max-width: 380px;
-    margin: 10px auto;
-    padding: 14px;
-    font-size: 1rem;
-    font-weight: 600;
-    background-color: #ffd700;
-    color: #000;
-    border: 2px solid #000;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-  
-  .upload-button:hover {
-    background-color: #ffcc00;
-    transform: scale(1.03);
-  }
-  
-  .upload-button:active {
-    background-color: #e6b800;
-    transform: scale(0.97);
-  }
-  
-  /* Download button */
-  .download-button {
-    display: block;
-    width: 100%;
-    max-width: 380px;
-    margin-top: 16px;
-    padding: 14px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #b30000;
-    border: 2px solid #000;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-  
-  .download-button:hover {
-    background-color: #cc0000;
-    transform: scale(1.03);
-  }
-
-  /* Hide the actual input */
-.hidden-file-input {
-    display: none;
-  }
-
-.auth-section {
+  background-color: #fffaf0;
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 60px auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.uploader-title {
+  font-size: 1.8rem;
+  color: #b30000;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px #ffd700;
+}
+
+.auth-section,
 .upload-section {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  margin-top: 20px;
 }
 
+.auth-section p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.google-signin {
+  background-color: #b30000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.google-signin:hover {
+  background-color: #990000;
+}
+
+/* Hide real file input */
+.hidden-file-input {
+  display: none;
+}
+
+/* Dropzone styling */
+.custom-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  margin: 0 auto 24px auto;
+  max-width: 380px;
+  height: 150px;
+  background-color: #fff;
+  color: #000;
+  border: 2px dashed #000;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Russo One', sans-serif;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-dropzone:hover {
+  background-color: #fffbe6;
+  border-color: #ffd700;
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.25);
+}
+
+/* Upload button */
+.upload-button {
+  background-color: #ffd700;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #ffcc00;
+}
+
+/* Actions section: download + calendar */
 .actions {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
+.download-button,
 .calendar-button {
-  background-color: #4285f4;
-  color: white;
-  padding: 10px 20px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Download Button */
+.download-button {
+  background-color: #b30000;
+  color: white;
+  text-decoration: none;
+}
+
+.download-button:hover {
+  background-color: #990000;
+  transform: scale(1.03);
+}
+
+/* Calendar Button */
+.calendar-button {
+  background-color: #ffd700;
+  color: black;
 }
 
 .calendar-button:hover {
-  background-color: #357abd;
+  background-color: #e6c200;
+  transform: scale(1.03);
 }

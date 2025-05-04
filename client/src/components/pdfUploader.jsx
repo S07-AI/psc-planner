@@ -150,12 +150,17 @@ const PdfUploader = () => {
         </div>
       ) : (
         <div className="upload-section">
-          <input
-            type="file"
-            accept="application/pdf"
-            className="file-input"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+          <label htmlFor="file-upload" className="custom-dropzone">
+  {file ? file.name : "Click or drag your course outline here"}
+</label>
+<input
+  id="file-upload"
+  type="file"
+  accept="application/pdf"
+  className="hidden-file-input"
+  onChange={(e) => setFile(e.target.files[0])}
+/>
+
           <button className="upload-button" onClick={handleUpload}>Upload</button>
 
           {csvUrl && (
