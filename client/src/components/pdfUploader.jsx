@@ -167,12 +167,12 @@ const PdfUploader = () => {
 
           {csvUrl && (
             <div className="actions">
-              <a className="download-button" href={csvUrl} download>
-                Download CSV
-              </a>
               <button className="calendar-button" onClick={createCalendarEvents}>
                 Add Events to Calendar
               </button>
+              <a className="download-button" href={csvUrl} download>
+                Download CSV
+              </a>
             </div>
           )}
         </div>
