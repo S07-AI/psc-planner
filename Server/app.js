@@ -8,12 +8,15 @@ import cors from 'cors';
 import { tempPdfString } from "./testpdf.js";
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 import { v4 as uuidv4 } from 'uuid';
+import { oauth2Client, getAuthUrl, createCalendarEvent } from './google.js';
+import dotenv from 'dotenv';
 
 const PORT = 8855;
 
 const app = express();
 app.use(express.static("public"));
 app.use(cors());
+app.use(express.json()); // Add this line to parse JSON bodies
 
 // Create public directory if it doesn't exist
 if (!fs.existsSync('./public')) {
@@ -37,6 +40,61 @@ const upload = multer({
 app.get("/", async (req, res) => {
     let test = await sendGeminiRequest(formatGeminiRequest(tempPdfString));
     res.send(test);
+});
+
+app.get('/auth/google', (req, res) => {
+    const url = getAuthUrl();
+    res.json({ url });
+});
+
+app.get('/auth/google/callback', async (req, res) => {
+    const { code } = req.query;
+    if (!code) {
+        console.error('No code received');
+        return res.redirect('http://localhost:3000/auth-error');
+    }
+
+    try {
+        const { tokens } = await oauth2Client.getToken(code);
+        oauth2Client.setCredentials(tokens);
+        
+        // Send tokens to frontend
+        res.redirect(`http://localhost:3000?tokens=${encodeURIComponent(JSON.stringify(tokens))}`);
+    } catch (error) {
+        console.error('OAuth error:', error);
+        res.redirect('http://localhost:3000/auth-error');
+    }
+});
+
+app.post('/calendar/create', async (req, res) => {
+    console.log('Received request body:', req.body); // Debug log
+
+    const { events, auth } = req.body || {};
+    
+    if (!events || !auth) {
+        return res.status(400).json({ 
+            error: 'Missing events or auth data',
+            receivedBody: req.body 
+        });
+    }
+
+    try {
+        console.log('Received events:', events); // Debug log
+        console.log('Auth tokens:', auth); // Debug log
+
+        const results = await Promise.all(
+            events.map(event => createCalendarEvent(event, auth))
+        );
+        
+        console.log('Created events:', results); // Debug log
+        res.json({ success: true, results });
+    } catch (error) {
+        console.error('Calendar creation error:', error); // Debug log
+        res.status(500).json({ 
+            error: 'Failed to create events',
+            details: error.message 
+        });
+    }
 });
 
 app.post('/upload', upload.single('pdf'), async (req, res) => {
