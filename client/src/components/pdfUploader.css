@@ -114,17 +114,31 @@
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
 }
+
 .calendar-button {
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: center; /* horizontal center */
+  gap: 8px; /* space between icon and text */
+  background: #f1f1f1;
+  color: white;
   border: none;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  background-size: 300% 300%;
+  animation: gradientShift 6s ease infinite;
+}
+
+.google-logo{
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
 /* Download Button */
