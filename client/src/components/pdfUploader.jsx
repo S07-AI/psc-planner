@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './pdfUploader.css';
 import Papa from 'papaparse';
+import googleLogo from './google.png'; // Ensure this path is correct
 
 const PdfUploader = () => {
   const [file, setFile] = useState(null);
@@ -174,7 +175,8 @@ const PdfUploader = () => {
           {csvUrl && (
             <div className="actions">
               <button className="calendar-button" onClick={createCalendarEvents}>
-                Add Events to Calendar
+                <img src={googleLogo} alt="Google Logo" className="google-logo" />
+                Add Events to Google Calendar
               </button>
               <a className="download-button" href={csvUrl} download>
                 Download CSV
