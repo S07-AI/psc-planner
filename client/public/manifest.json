@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Gryph Planner",
+  "name": "Gryph Planner",
+  "description": "A web application that adds your course outline events to Google Calendar.",
   "icons": [
     {
       "src": "favicon.ico",
