@@ -8,8 +8,8 @@ const Header = () => {
       <div className="header-content">
         <img src={gryphonLogo} alt="Gryphon Logo" className="header-logo" />
         <div className="header-text">
-          <h1 className="header-title">Course to Calendar Converter</h1>
-          <p className="header-subtitle">because who reads course outlines...</p>
+          <h1 className="header-title">GryphPlanner</h1>
+          <p className="header-subtitle">Course to Calendar Converter</p>
         </div>
       </div>
     </header>
