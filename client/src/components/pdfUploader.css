@@ -128,7 +128,7 @@
   font-size: 1rem;
   border-radius: 10px;
   cursor: pointer;
-  width: 100%;
+  width: 300%;
   max-width: 300px;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   background-size: 300% 300%;
@@ -155,22 +155,49 @@
 
 /* Calendar Button */
 .calendar-button {
-  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ffffff; /* keep interior white */
   color: #000;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 12px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 3px solid transparent;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 0; /* important for layout */
+  margin: 0 auto; /* centers it */
 }
 
-.calendar-button:hover {
-  transform: scale(1.03);
-  box-shadow:
-    0 0 0 2px green,
-    0 0 0 4px red,
-    0 0 0 6px blue,
-    0 0 0 8px yellow;
+.calendar-button::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* replaces top/left/right/bottom */
+  z-index: -1;
+  border-radius: inherit;
+  padding: 3px; /* thickness of border */
+  background: linear-gradient(90deg, #00cc66, #b30000, #0077ff, #ffd700);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.calendar-button:hover::before {
+  opacity: 1;
+}
+
+.calendar-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
